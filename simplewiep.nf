@@ -24,7 +24,7 @@ Channel
     .fromPath("./short_3_columns.tsv")
     .splitCsv(header: ['wikidata', 'smiles', 'isosmiles'], sep:'\t')
     .map{ row -> tuple(row.wikidata, row.smiles, row.isosmiles) }
-    .buffer (size:2, remainder:true)
+    .buffer (size:1, remainder:true)
     .set { molecules_ch }
 
 /* the process uses as input 1 set at a time.  
@@ -50,6 +50,13 @@ process parseSMILES {
 	  mol = cdk.fromSMILES("$smiles")
 	  jplog = new JPlogPDescriptor()
 		JPLOGofMol = jplog.calculate(mol.getAtomContainer()).value.toString()
+	
+	  if (JPLOGofMol == "NaN") {
+	  println "Using isoSMILES ..."
+	  isomol = cdk.fromSMILES("$isosmiles")
+	  JPLOGofMol = jplog.calculate(isomol.getAtomContainer()).value.toString()
+	  }
+
 	  println "JPlogP value:" + JPLOGofMol	  
 	  } catch (Exception exc) {
 	   println "$exc" 
