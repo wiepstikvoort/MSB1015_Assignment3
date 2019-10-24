@@ -53,6 +53,9 @@ It can be seen that the running time decreases as the set size increases. As exp
   
 Another unexpected find was the 0.0 values for the JPlogP when the isoSMILES was used instead of the SMILES. This can be due to the used descriptor (JPlogPDescriptor). The parsing of the isoSMILES seems to work, and does not return an error. Therefore, it might be that the descriptor cannot deal with the information in the IAtomContainer for the isoSMILES and will therefore return 0.0 as JPlogP. Or a value inside the IAtomContainer equals 0, which in the SMILES IAtomContainer is crucial to calculate the JPlogP, and therefore returns 0.0 as JPlogP. 
 
+## Conclusion
+The buffer seems to work properly as a means to create a level of parallelization. Increasing the set size does indeed decrease the running time, which proves that parallelization of a file is beneficial for computing times. 
+
 ## Sources used for template code
 Egon Willighagen and Martina Summer-Kutmon provided template code that were essential for the running of the code.
 
