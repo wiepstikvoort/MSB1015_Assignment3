@@ -16,14 +16,14 @@ This part will contain information and screenshots of the running times.
 ## Sources used for template code
 Egon Willighagen and Martina Summer-Kutmon provided template code that were essential for the running of the code.
 
-To find more information on the config file, usage, and template code, please visit:
+To find more information on the config file, usage, and template code, please visit:  
 https://www.nextflow.io/docs/latest/config.html
 
-To find information and template code for the SPARQL query, please visit:
+To find information and template code for the SPARQL query, please visit:  
 https://cran.r-project.org/web/packages/WikidataQueryServiceR/WikidataQueryServiceR.pdf
 (used documentation version: 0.1.1)
 
-To find more information on how to use, and which methods the descriptor contains, please visit:
+To find more information on how to use, and which methods the descriptor contains, please visit:  
 http://cdk.github.io/cdk/latest/docs/api/org/openscience/cdk/qsar/descriptors/molecular/JPlogPDescriptor.html
 
 
