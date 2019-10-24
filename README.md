@@ -15,6 +15,8 @@ The query searches for any compounds that have either a Simplified Molecular-Inp
 
 This assignment has a focus on parallelization. The parallelizing of different processes at once is set inside the channel (please see calculatingJPlogPs.nf). The buffer splits the rows of the compounds_from_query.tsv file into sets of size: x. If x = 1, then the code is unparallelized, because the sets (which in this case is equal to the rows) are used as input for the process one by one. If x = 2, the sets have size 2, therefore there can be two processes at once. However, how many processes can be run at the same time, depends on the number of thread a computer has. If you have 12 threads, then it can handle 12 processes at once. If you have 4 threads, it can handle 4 processes etc.  
 
+The nextflow.config file is used 'under the hood'. Nextflow searches for it, and uses it when found. The config file in this repository says that the file should retry the process when an error is retrieved. It also allows to run the file up to 1500 errors (which is >1% of the compounds).
+
 #### Pseudocode 
 The pseudocode for calculatingJPlogPs.nf
 - Setting up the channel, including the buffer that defines the set size
