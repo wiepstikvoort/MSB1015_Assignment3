@@ -32,7 +32,7 @@ Make sure that your file that contains the compounds is in the same directory as
 Further documentation on the code can be found in the comments in calculatingJPlogPs.nf. 
 
 ## How to run the code
-Download the ZIP folder. Or download the calculatingJPlogPs.nf and compounds_from_query.tsv and save them in the same directory. Then run the calculingJPlogPs.nf on a linux command line (either your computer command line, or a linux subsystem command line). The JPlogPs are then printed on the command line. Make sure that Nextflow is loaded on the linux (sub)system to be able to run the file. Please also make sure that you have either Java 8 or a later version installed.  
+Download the ZIP folder. Or download the calculatingJPlogPs.nf and compounds_from_query.tsv and save them in the same directory. Then run the calculatingJPlogPs.nf on a linux command line (either your computer command line, or a linux subsystem command line). The JPlogPs are then printed on the command line. Make sure that Nextflow is loaded on the linux (sub)system to be able to run the file. Please also make sure that you have either Java 8 or a later version installed.  
 
 To run the query, please run the compounds_from_query.R file in R or Rstudio. 
 
