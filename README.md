@@ -51,7 +51,7 @@ Running the code with different set sizes, will output different running times. 
 
 It can be seen that the running time decreases as the set size increases. As explained in the Set up of methods section, this is what would be expected. As the computer is allowed to run more processes at once, it will do so, which will decrease the running time. The only thing which seems unexpected is the increase in running time between set sizes 20 and 100,000. The set size of 100,000 should give the computer a 'free will' on what it wants to do with the processes, as it can do as many processes at once as it wants to. However, it might be that other processes were already occupying the threads, and therefore the running time for the biggest set size is higher then for a set size of 20.  
   
-Another unexpected find was the 0.0 values for the JPlogP when the isoSMILES was used instead of the SMILES. This can be due to the used descriptor (JPlogPDescriptor). It might be that the descriptor cannot deal with isoSMILES and will therefore return 0.0 as JPlogP.
+Another unexpected find was the 0.0 values for the JPlogP when the isoSMILES was used instead of the SMILES. This can be due to the used descriptor (JPlogPDescriptor). The parsing of the isoSMILES seems to work, and does not return an error. Therefore, it might be that the descriptor cannot deal with the information in the IAtomContainer for the isoSMILES and will therefore return 0.0 as JPlogP. Or a value inside the IAtomContainer equals 0, which in the SMILES IAtomContainer is crucial to calculate the JPlogP, and therefore returns 0.0 as JPlogP. 
 
 ## Sources used for template code
 Egon Willighagen and Martina Summer-Kutmon provided template code that were essential for the running of the code.
