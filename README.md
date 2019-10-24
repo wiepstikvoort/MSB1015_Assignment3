@@ -6,7 +6,11 @@ Welcome to the repository of Assignment 3 for the course MSB1015 'Scientific Pro
 The goals was to gather information on the difference in running times of a piece of code, when the computing is parallelized or not parallelized. Parallelization means that multiple threads on your computer can work at the same time. In this case, multiple threads can work on different smiles and calculate the JPlogP values. Doing this one by one, on one thread, would logically increase the running time of the code. 
 
 ## Set up of methods
+The compounds in the compounds_from_query.tsv file, are retrieved through the SPARQL query that can be found in the compounds_from_query.R.  
 
+The query searches for any compounds that have either a SMILES (P233) or an isoSMILES (P2017) on wikidata. The url to the wikidata page of the compound is in the same row as the SMILES and/or the isoSMILES. There should not be any compounds that have neither a SMILES or an isoSMILES, because the query is set up in a way that it searches for SMILES and isoSMILES and then links the compound url to that and not the other way around.  
+
+This assignment has a focus on parallelization. The parallelizing of different processes at once is set inside the channel (please see ...... .nf). The buffer splits the rows of the compounds_from_query.tsv file into sets of size: x. If x = 1, then the code is unparallelized.  
 
 ## How to run the code
 
