@@ -7,18 +7,15 @@ import net.bioclipse.managers.CDKManager
 import org.openscience.cdk.qsar.descriptors.molecular.JPlogPDescriptor
 import org.openscience.cdk.interfaces.IAtomContainer
 
-/* the channel sets the path to the short.tsv file for now, to do some tests and get the code 
-* functioning. It splits the file into wikidata, and smiles, and tells it that you want as ouput 
-* 1 row with the wikidata and 1 smiles 
-* the buffer sets the size of the set, so that your computer can use as many threads as there are 
-* rows in the set
-*/
 
-/* need to change short.tsv to the file that contains all smiles
-*
-*
+/* The channel sets the path to use as input the compounds_from_query.tsv file. This is the file 
+* that contains all compounds with their smiles and/or isosmiles. The header tells the file what the
+* names of the columns are, and the tuple sets the different columns to wikidata, smiles or 
+* isosmiles per row. 
+* To change the level of parallelization of the running of the code, the size in the buffer needs to 
+* be changed. If size equals 1, the process is unparallelized. Please refer to the README.md for 
+* further information.
 */
-
 
 Channel
     .fromPath("./compounds_from_query.tsv")
@@ -27,25 +24,37 @@ Channel
     .buffer (size:1, remainder:true)
     .set { molecules_ch }
 
-/* the process uses as input 1 set at a time.  
-* the execution tells you that the first entry (entry[0]) is the wikidata, and the second entry
-* is the smiles
-* if there is a smiles, it prints the wikidata and the smiles
-* if it does not have a smiles it prints that that url has no smiles
+/* The input for the process uses 1 set at a time, that is why changing the size of the set is 
+* changing the level of parallelization. 
 */
 
 process parseSMILES {
     input:
     each set from molecules_ch
 
+/* The for(entry in set) sets the variable names. As nextflow starts counting at 0, the first column
+* is entry[0] and is set to be named wikidata, as it is the wikidata url to the compound.
+*/
     exec:
        for(entry in set) {
 	  wikidata = entry[0]
           smiles = entry[1]
 	  isosmiles = entry[2]
 
+/* Setting the variable name cdk to contain the functionality that CDKManager(".") has. The same goes 
+* for setting the variable name jplog.
+*/
+
 	  cdk = new CDKManager(".")
 
+/* The try-catch contains the parsing of the smiles, the conversion to an Iatomcontainer object, and 
+* the retrieving of the JPLogP value. 
+* The if-statement is called when the JPLogP contains an NaN, so it was unable to calculate a value
+* from the information in the SMILES. The isoSMILES is then parsed, converted, and used to calculate
+* the JPLogP value for that compound.
+* After the if-statement, the JPLogP value (retrieved through either the SMILES or isoSMILES) is 
+* printed to the command line. 
+*/
 	  try {
 	  mol = cdk.fromSMILES("$smiles")
 	  jplog = new JPlogPDescriptor()
