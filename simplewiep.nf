@@ -34,7 +34,7 @@ Channel
 * if it does not have a smiles it prints that that url has no smiles
 */
 
-process printSMILES {
+process parseSMILES {
     input:
     each set from molecules_ch
 
@@ -42,28 +42,19 @@ process printSMILES {
        for(entry in set) {
 	  wikidata = entry[0]
           smiles = entry[1]
-	  if (smiles!= null) {
-          println ("$wikidata and $smiles")
-       } else {
-	  println ("$wikidata has no SMILES")
+	  
+	  cdk = new CDKManager(".")
+
+	  try {
+	  mol = cdk.fromSMILES("$smiles")
+	  jplog = new JPlogPDescriptor()
+		JPLOGofMol = jplog.calculate(mol.getAtomContainer()).value.toString()
+	  println "JPlogP value:" + JPLOGofMol	  
+	  } catch (Exception exc) {
+	   println "$exc" 
+	  }
        }
    }
-}
 
 
-/*
-*process parseSMILES {
-*    input:
-*    each set from molecules_ch
-*   
-*    output:
-*    stdout out
-*
-*    script:
-*    """
-*       #!/user/bin/env groovy
-*       @Grab(group 
-*       for(entry in set) {
-*          if (smiles!= null) {
-*/             
-    
+
