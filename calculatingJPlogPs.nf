@@ -48,7 +48,7 @@ process parseSMILES {
 	  cdk = new CDKManager(".")
 
 /* The try-catch contains the parsing of the smiles, the conversion to an Iatomcontainer object, and 
-* the retrieving of the JPLogP value. 
+* the retrieving of the JPLogP value. It catches errors, when it comes across them.
 * The if-statement is called when the JPLogP contains an NaN, so it was unable to calculate a value
 * from the information in the SMILES. The isoSMILES is then parsed, converted, and used to calculate
 * the JPLogP value for that compound.
