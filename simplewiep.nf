@@ -21,9 +21,9 @@ import org.openscience.cdk.interfaces.IAtomContainer
 
 
 Channel
-    .fromPath("./short.tsv")
-    .splitCsv(header: ['wikidata', 'smiles'], sep:'\t')
-    .map{ row -> tuple(row.wikidata, row.smiles) }
+    .fromPath("./short_3_columns.tsv")
+    .splitCsv(header: ['wikidata', 'smiles', 'isosmiles'], sep:'\t')
+    .map{ row -> tuple(row.wikidata, row.smiles, row.isosmiles) }
     .buffer (size:2, remainder:true)
     .set { molecules_ch }
 
@@ -42,7 +42,8 @@ process parseSMILES {
        for(entry in set) {
 	  wikidata = entry[0]
           smiles = entry[1]
-	  
+	  isosmiles = entry[2]
+
 	  cdk = new CDKManager(".")
 
 	  try {
