@@ -10,12 +10,23 @@ The compounds in the compounds_from_query.tsv file, are retrieved through the SP
 
 The query searches for any compounds that have either a SMILES (P233) or an isoSMILES (P2017) on wikidata. The url to the wikidata page of the compound is in the same row as the SMILES and/or the isoSMILES. There should not be any compounds that have neither a SMILES or an isoSMILES, because the query is set up in a way that it searches for SMILES and isoSMILES and then links the compound url to that and not the other way around.  
 
-This assignment has a focus on parallelization. The parallelizing of different processes at once is set inside the channel (please see ...... .nf). The buffer splits the rows of the compounds_from_query.tsv file into sets of size: x. If x = 1, then the code is unparallelized.  
+This assignment has a focus on parallelization. The parallelizing of different processes at once is set inside the channel (please see calculatingJPlogPs.nf). The buffer splits the rows of the compounds_from_query.tsv file into sets of size: x. If x = 1, then the code is unparallelized, because the sets (which in this case is equal to the rows) are used as input for the process one by one. If x = 2, the sets have size 2, therefore there can be two processes at once. However, how many processes can be run at the same time, depends on the number of thread a computer has. If you have 12 threads, then it can handle 12 processes at once. If you have 4 threads, it can handle 4 processes etc.  
+
 
 ## How to run the code
 
 ## Results
+
 This part will contain information and screenshots of the running times.
+
+| Size of set | Running time |
+|-------------|--------------|
+| 1           | 7m 6s        |
+| 2           | 4m 59s       |
+| 4           | 3m 8s        |
+| 8           | 2m 16s       |
+| 20          | 1m 39s       |
+| 100,000     | 2m 20s       |
 
 ## Sources used for template code
 Egon Willighagen and Martina Summer-Kutmon provided template code that were essential for the running of the code.
