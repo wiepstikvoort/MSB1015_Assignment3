@@ -73,5 +73,7 @@ process parseSMILES {
        }
    }
 
-
+/* The line that prints when the code is using the isoSMILES is a checkpoint. The code will let you
+* know when it cannot use the SMILES in this way, and will therefore use the isoSMILES.
+*/
 
