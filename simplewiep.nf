@@ -21,7 +21,7 @@ import org.openscience.cdk.interfaces.IAtomContainer
 
 
 Channel
-    .fromPath("./short_3_columns.tsv")
+    .fromPath("./compounds_from_query.tsv")
     .splitCsv(header: ['wikidata', 'smiles', 'isosmiles'], sep:'\t')
     .map{ row -> tuple(row.wikidata, row.smiles, row.isosmiles) }
     .buffer (size:1, remainder:true)
