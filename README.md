@@ -32,7 +32,7 @@ Make sure that your file that contains the compounds is in the same directory as
 Further documentation on the code can be found in the comments in calculatingJPlogPs.nf. 
 
 ## How to run the code
-Download the ZIP folder. Or download the calculatingJPlogPs.nf and compounds_from_query.tsv and save them in the same directory. Then run the calculingJPlogPs.nf on a linux command line (either your computer command line, or a linux subsystem command line). The JPlogPs are then printed on the command line. Make sure that Nextflow is loaded on the linux (sub)system to be able to run the file. 
+Download the ZIP folder. Or download the calculatingJPlogPs.nf and compounds_from_query.tsv and save them in the same directory. Then run the calculingJPlogPs.nf on a linux command line (either your computer command line, or a linux subsystem command line). The JPlogPs are then printed on the command line. Make sure that Nextflow is loaded on the linux (sub)system to be able to run the file. Please also make sure that you have either Java 8 or a later version installed.  
 
 To run the query, please run the compounds_from_query.R file in R or Rstudio. 
 
@@ -60,15 +60,20 @@ To find more information on the config file, usage, and template code, please vi
 https://www.nextflow.io/docs/latest/config.html
 
 To find information and template code for the SPARQL query, please visit:  
-https://cran.r-project.org/web/packages/WikidataQueryServiceR/WikidataQueryServiceR.pdf
+https://cran.r-project.org/web/packages/WikidataQueryServiceR/WikidataQueryServiceR.pdf  
 (used documentation version: 0.1.1)
 
 To find more information on how to use, and which methods the descriptor contains, please visit:  
 http://cdk.github.io/cdk/latest/docs/api/org/openscience/cdk/qsar/descriptors/molecular/JPlogPDescriptor.html
 
-The following book was used for template code, as well as information on the logP value and its meaning:
+The following book was used for template code, as well as information on the logP value and its meaning:  
 https://egonw.github.io/cdkbook/
 
+For any information on Nextflow or how to run it, please visit:  
+https://www.nextflow.io/docs/latest/index.html
+
+For any information regarding installation, please visit:  
+https://www.nextflow.io/docs/latest/getstarted.html
 
 ## List of author(s)
 Wiep Stikvoort
