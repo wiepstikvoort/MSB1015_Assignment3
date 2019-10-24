@@ -1,5 +1,12 @@
 #!/usr/bin/env nextflow
 
+@Grab(group='io.github.egonw.bacting', module='managers-cdk', version='0.0.9')
+@Grab(group='org.openscience.cdk', module='cdk-qsarmolecular', version='2.3')
+
+import net.bioclipse.managers.CDKManager
+import org.openscience.cdk.qsar.descriptors.molecular.JPlogPDescriptor
+import org.openscience.cdk.interfaces.IAtomContainer
+
 /* the channel sets the path to the short.tsv file for now, to do some tests and get the code 
 * functioning. It splits the file into wikidata, and smiles, and tells it that you want as ouput 
 * 1 row with the wikidata and 1 smiles 
@@ -12,14 +19,6 @@
 *
 */
 
-
-@Grab(group='io.github.egonw.bacting', module='managers-cdk', version='0.0.9')
-@Grab(group='org.openscience.cdk', module='cdk-qsarmolecular', version='2.3')
-@Grab(group='org.openscience.cdk', module='cdk-interfaces', version='2.3')
-
-import net.bioclipse.managers.CDKManager
-import org.openscience.cdk.qsar.descriptors.molecular.JPlogPDescriptor
-import org.openscience.cdk.interfaces.IAtomContainer
 
 Channel
     .fromPath("./short.tsv")
